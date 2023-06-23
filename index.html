@@ -17,9 +17,7 @@
 			<button
 			id="setName"
 			onclick="setRecord()"
-			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
-			disabled="disabled" 
-			>
+			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white">
 			NFT Record
 			</button>
             <h3 class="text-center">Send today's Total</h3>
@@ -27,8 +25,7 @@
 			<button
 			id="setTotal"
 			onclick="setTotal()"
-			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
-			>
+			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white">
 			Daily Total number
 			</button>
             <h3 class="text-center">Check Transaction Record</h3>
@@ -37,8 +34,7 @@
 			<button
 			id="getTran"
 			onclick="getTransaction()"
-			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
-			>
+			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white">
 			Check Transaction Record
 			</button>
 		<div>
@@ -156,6 +152,21 @@
             contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
             }
         })();
+        async function setRecord() {
+        await window.ethereum.send('eth_requestAccounts');
+				window.web3 = new Web3(window.ethereum);
+				var accounts = await web3.eth.getAccounts();
+				account = accounts[0];
+            var SetRecord1 = document.getElementById("Record1").value;
+            var SetRecord2 = document.getElementById("Record2").value;
+            var SetRecord3 = document.getElementById("Record3").value;
+			document.getElementById('wallet-address').textContent = account;
+			const recordsetting = await contract.methods
+            .dailyMapping(`${SetRecord1},${SetRecord2},${SetRecord3}`)
+			.call({ from: account });
+			//alert(`Contract ${CONTRACT_ADDRESS} Name: ${naming}`);
+			alert(`Record saved: ${recordsetting}`);
+        }
         async function getTransaction() {
         await window.ethereum.send('eth_requestAccounts');
 				window.web3 = new Web3(window.ethereum);
@@ -164,13 +175,12 @@
             var ReadTransaction1 = document.getElementById("TranNum1").value;
             var ReadTransaction2 = document.getElementById("TranNum1").value;
 			document.getElementById('wallet-address').textContent = account;
-            alert(`Transaction saved: ${(ReadTransaction2)}`);
 			const transaction = await contract.methods
-            .dailyMapping(`${ReadTransaction1},${ReadTransaction1}`)
+            .dailyMapping(`${ReadTransaction1},${ReadTransaction2}`)
 			.call({ from: account });
 			//alert(`Contract ${CONTRACT_ADDRESS} Name: ${naming}`);
 			alert(`Transaction saved: ${transaction}`);
-      }
+        }
         </script>
 </body>
 </html>
