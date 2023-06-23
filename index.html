@@ -172,8 +172,8 @@
 				window.web3 = new Web3(window.ethereum);
 				var accounts = await web3.eth.getAccounts();
 				account = accounts[0];
-            var ReadTransaction1 = document.getElementById("TranNum1").value;
-            var ReadTransaction2 = document.getElementById("TranNum1").value;
+            var ReadTransaction1 = parseInt(document.getElementById("TranNum1").value);
+            var ReadTransaction2 = parseInt(document.getElementById("TranNum2").value);
 			document.getElementById('wallet-address').textContent = account;
 			const transaction = await contract.methods
             .dailyMapping(`${ReadTransaction1},${ReadTransaction2}`)
