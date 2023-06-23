@@ -192,11 +192,11 @@
             var ReadTransaction = document.getElementById("TranNum").value;
 			document.getElementById('wallet-address').textContent = account;
             alert(`Transaction saved: ${ReadTransaction}`);
-			const transaction = await contract.methods
-            .dailyMapping(`${ReadTransaction}`)
-			.call({ from: account });
+			//const transaction = await contract.methods
+            //.dailyMapping(`${ReadTransaction}`)
+			//.call({ from: account });
 			//alert(`Contract ${CONTRACT_ADDRESS} Name: ${naming}`);
-			alert(`Transaction saved: ${transaction}`);
+			//alert(`Transaction saved: ${transaction}`);
       }
         </script>
 </body>
