@@ -23,18 +23,122 @@
             <h3 class="text-center">Send today's Total</h3>
             <input type="text" id="TotalNum" style="background-color:#c9b873;" onkeyup="EnableDisable(this)">
 			<button
-			id="getName"
-			onclick="getUserName()"
+			id="setTotal"
+			onclick="setTotal()"
 			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
 			>
 			Daily Total number
+			</button>
+            <h3 class="text-center">Check Transaction Record</h3>
+            <input type="text" id="TranNum" style="background-color:#c9b873;" onkeyup="EnableDisable(this)">
+			<button
+			id="getTran"
+			onclick="getTransaction()"
+			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
+			>
+			Check Transaction Record
 			</button>
 		<div>
         <script type=""text/javascript">
             // 1. Connect metamask
             var account = null;
             var contract = null;
-            const ABI = [];
+            const ABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "from",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "to",
+				"type": "uint256"
+			}
+		],
+		"name": "addAndUpdateElement",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "keys",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "from",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "to",
+				"type": "uint256[]"
+			}
+		],
+		"name": "bulkUpdateMapping",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "dailyMapping",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "transferFrom",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "transferTo",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "footballPlayers",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "transferFrom",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "transferTo",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
             const CONTRACT_ADDRESS = "0x6590C6C0EDA8238A7A29E70a0125d56dc8A181a7";
         function EnableDisable(Records) {
             //Reference the Button.
@@ -60,6 +164,19 @@
             contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
             }
         })();
+        async function getTransaction() {
+        await window.ethereum.send('eth_requestAccounts');
+				window.web3 = new Web3(window.ethereum);
+				var accounts = await web3.eth.getAccounts();
+				account = accounts[0];
+            var ReadTransaction = document.getElementById("TranNum").value;
+			document.getElementById('wallet-address').textContent = account;
+			const transaction = await contract.methods
+            .dailyMapping(`${ReadTransaction}`)
+			.call({ from: account });
+			//alert(`Contract ${CONTRACT_ADDRESS} Name: ${naming}`);
+			alert(`Transaction saved: ${transaction}`);
+      }
         </script>
 </body>
 </html>
