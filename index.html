@@ -139,10 +139,10 @@
 		"type": "function"
 	}
 ];
-            const CONTRACT_ADDRESS = "0x6590C6C0EDA8238A7A29E70a0125d56dc8A181a7";
+        const CONTRACT_ADDRESS = "0x6590C6C0EDA8238A7A29E70a0125d56dc8A181a7";
         function EnableDisable(Records) {
             //Reference the Button.
-            var btnSubmit = document.getElementById("setName");
+            var btnSubmit = document.getElementById("Records");
             //Verify the TextBox value.
             if (Records.value.trim() != "") {
                 //Enable the TextBox when TextBox has value.
@@ -150,6 +150,26 @@
             } else {
                 //Disable the TextBox when TextBox is empty.
                 btnSubmit.disabled = true;
+            }
+            //Reference the Button.
+            var btnTotal = document.getElementById("TotalNum");
+            //Verify the TextBox value.
+            if (Records.value.trim() != "") {
+                //Enable the TextBox when TextBox has value.
+                btnTotal.disabled = false;
+            } else {
+                //Disable the TextBox when TextBox is empty.
+                btnTotal.disabled = true;
+            }
+            //Reference the Button.
+            var btnTran = document.getElementById("TranNum");
+            //Verify the TextBox value.
+            if (Records.value.trim() != "") {
+                //Enable the TextBox when TextBox has value.
+                btnTran.disabled = false;
+            } else {
+                //Disable the TextBox when TextBox is empty.
+                btnTran.disabled = true;
             }
         }; 
         (async () => {
@@ -171,6 +191,7 @@
 				account = accounts[0];
             var ReadTransaction = document.getElementById("TranNum").value;
 			document.getElementById('wallet-address').textContent = account;
+            alert(`Transaction saved: ${ReadTransaction}`);
 			const transaction = await contract.methods
             .dailyMapping(`${ReadTransaction}`)
 			.call({ from: account });
