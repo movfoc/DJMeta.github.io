@@ -1,3 +1,65 @@
+<!DOCTYPE html>
 <html>
-    Testing
+    <head>
+        <meta charset="utf-8">
+        <title>Deploying DJ NFT to Polygon</title>
+        <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    </head>
+    <body>
+        <div>
+            <p>Wallet address - <span id="wallet-address"></span></p>
+        </div>
+        <div>
+			<h3 class="text-center">Send today's Record</h3>
+			<input type="text" id="Records" style="background-color:#c9b873;" onkeyup="EnableDisable(this)">
+			<button
+			id="setName"
+			onclick="setUserName()"
+			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
+			disabled="disabled" 
+			>
+			NFT Record
+			</button>
+            <h3 class="text-center">Send today's Total</h3>
+            <input type="text" id="TotalNum" style="background-color:#c9b873;" onkeyup="EnableDisable(this)">
+			<button
+			id="getName"
+			onclick="getUserName()"
+			class="rounded bg-blue-500 hover:bg-blue-700 py-2 px-4 text-white"
+			>
+			Daily Total number
+			</button>
+		<div>
+        <script type=""text/javascript">
+            // 1. Connect metamask
+            var account = null;
+            var contract = null;
+            const ABI = [];
+            const CONTRACT_ADDRESS = "0x6590C6C0EDA8238A7A29E70a0125d56dc8A181a7";
+        function EnableDisable(Records) {
+            //Reference the Button.
+            var btnSubmit = document.getElementById("setName");
+            //Verify the TextBox value.
+            if (Records.value.trim() != "") {
+                //Enable the TextBox when TextBox has value.
+                btnSubmit.disabled = false;
+            } else {
+                //Disable the TextBox when TextBox is empty.
+                btnSubmit.disabled = true;
+            }
+        }; 
+        (async () => {
+            if (window.ethereum) {
+            await window.ethereum.send('eth_requestAccounts');
+            window.web3 = new Web3(window.ethereum);
+
+            var accounts = await web3.eth.getAccounts();
+            account = accounts[0];
+            document.getElementById('wallet-address').textContent = account;
+
+            contract = new web3.eth.Contract(ABI, CONTRACT_ADDRESS);
+            }
+        })();
+        </script>
+</body>
 </html>
