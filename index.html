@@ -30,7 +30,8 @@
 			Daily Total number
 			</button>
             <h3 class="text-center">Check Transaction Record</h3>
-            <input type="text" id="TranNum" style="background-color:#c9b873;" onkeyup="EnableDisable(this)">
+            <input type="text" id="TranNum1" style="background-color:#c9b873;" >
+            <input type="text" id="TranNum2" style="background-color:#c9b873;" >
 			<button
 			id="getTran"
 			onclick="getTransaction()"
@@ -189,9 +190,10 @@
 				window.web3 = new Web3(window.ethereum);
 				var accounts = await web3.eth.getAccounts();
 				account = accounts[0];
-            var ReadTransaction = document.getElementById("TranNum").value;
+            var ReadTransaction1 = document.getElementById("TranNum1").value;
+            var ReadTransaction2 = document.getElementById("TranNum1").value;
 			document.getElementById('wallet-address').textContent = account;
-            alert(`Transaction saved: ${ReadTransaction}`);
+            alert(`Transaction saved: ${(ReadTransaction2)}`);
 			//const transaction = await contract.methods
             //.dailyMapping(`${ReadTransaction}`)
 			//.call({ from: account });
