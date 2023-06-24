@@ -176,8 +176,11 @@
             var ReadTransaction2 = parseInt(document.getElementById("TranNum2").value);
 			document.getElementById('wallet-address').textContent = account;
 			const transaction = await contract.methods
-            .dailyMapping(${ReadTransaction1},${ReadTransaction2})
-			.call({ from: account });
+			 .dailyMapping(<span class="math-inline">\{ReadTransaction1\},</span>{ReadTransaction2})
+			  .call({ from: account });
+			//const transaction = await contract.methods
+            //.dailyMapping(${ReadTransaction1},${ReadTransaction2})
+			//.call({ from: account });
 			//alert(`Contract ${CONTRACT_ADDRESS} Name: ${naming}`);
 			alert(`Transaction saved: ${transaction}`);
         }
