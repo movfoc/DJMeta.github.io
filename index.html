@@ -178,7 +178,8 @@
 			const transaction = await contract.methods
             .dailyMapping(`${ReadTransaction1}`,${ReadTransaction2})
 			.call({ from: account });
-			alert(`Transaction saved: ${transaction}`);
+			var output = JSON.stringify(transaction);
+			alert(`Transaction saved: ${output}`);
         }
         </script>
 </body>
