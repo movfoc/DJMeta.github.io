@@ -162,7 +162,7 @@
             var SetRecord3 = document.getElementById("Record3").value;
 			document.getElementById('wallet-address').textContent = account;
 			const recordsetting = await contract.methods
-            .dailyMapping(`${SetRecord1},${SetRecord2},${SetRecord3}`)
+            .dailyMapping(`${SetRecord1,SetRecord2,SetRecord3}`)
 			.call({ from: account });
 			//alert(`Contract ${CONTRACT_ADDRESS} Name: ${naming}`);
 			alert(`Record saved: ${recordsetting}`);
@@ -176,7 +176,7 @@
             var ReadTransaction2 = parseInt(document.getElementById("TranNum2").value);
 			document.getElementById('wallet-address').textContent = account;
 			const transaction = await contract.methods
-            .dailyMapping(${ReadTransaction1,ReadTransaction2})
+            .dailyMapping(`${ReadTransaction1,ReadTransaction2}`)
 			.call({ from: account });
 			alert(`Transaction saved: ${transaction}`);
         }
