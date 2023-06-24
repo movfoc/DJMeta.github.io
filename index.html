@@ -176,7 +176,7 @@
             var ReadTransaction2 = parseInt(document.getElementById("TranNum2").value);
 			document.getElementById('wallet-address').textContent = account;
 			const transaction = await contract.methods
-            .dailyMapping(${ReadTransaction1},${ReadTransaction2})
+            .dailyMapping(`${ReadTransaction1},${ReadTransaction2}`)
 			.call({ from: account });
 			var output = JSON.stringify(transaction);
 			alert(`Transaction saved: ${output}`);
