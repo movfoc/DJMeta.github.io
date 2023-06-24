@@ -162,7 +162,7 @@
             var SetRecord3 = document.getElementById("Record3").value;
 			document.getElementById('wallet-address').textContent = account;
 			const recordsetting = await contract.methods
-            .dailyMapping(`${SetRecord1}`,`${SetRecord2}`,`${SetRecord3}`)
+            .dailyMapping(`${SetRecord1},${SetRecord2},${SetRecord3}`)
 			.call({ from: account });
 			//alert(`Contract ${CONTRACT_ADDRESS} Name: ${naming}`);
 			alert(`Record saved: ${recordsetting}`);
