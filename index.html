@@ -138,7 +138,8 @@
 		"type": "function"
 	}
 ];
-        const CONTRACT_ADDRESS = "0x6590C6C0EDA8238A7A29E70a0125d56dc8A181a7";
+        //const CONTRACT_ADDRESS = "0x6590C6C0EDA8238A7A29E70a0125d56dc8A181a7";
+		const CONTRACT_ADDRESS = "0xd9145CCE52D386f254917e481eB44e9943F39138";
 
         (async () => {
             if (window.ethereum) {
@@ -176,9 +177,9 @@
             var ReadTransaction2 = parseInt(document.getElementById("TranNum2").value);
 			document.getElementById('wallet-address').textContent = account;
 			const transaction = await contract.methods
-            .dailyMapping(`${ReadTransaction1}","${ReadTransaction2}`)
+            .dailyMapping(`${ReadTransaction1},${ReadTransaction2}`)
 			.call({ from: account });
-			var output = JSON.stringify(transaction);
+			//var output = JSON.stringify(transaction);
 			alert(`Transaction saved: ${output}`);
         }
         </script>
